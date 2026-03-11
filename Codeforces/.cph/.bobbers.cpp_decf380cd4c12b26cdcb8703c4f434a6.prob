@@ -1,0 +1,1 @@
+{"name":"Local: bobbers","url":"d:\\DSA\\Codeforces\\bobbers.cpp","tests":[{"id":1773213284498,"input":"4 7","output":"2"},{"id":1773213295173,"input":"4 9","output":"3"},{"id":1773213304669,"input":"1 1","output":"1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\Codeforces\\bobbers.cpp","group":"local","local":true}
