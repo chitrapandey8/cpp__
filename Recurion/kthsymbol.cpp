@@ -2,32 +2,27 @@
 using namespace std;
 
 
-string buildstring(string sr){
- string s = "";
- for(int i =0; i<s.size(); i++){
-    char ch = s[i];
-    if(ch == '0'){
-       s += "01";
-    }else{
-       s += "10";
-    }
- }
- return s;
+int returnindes(int A, int B){
+   if(A == 1){
+     return 0;
+   }
+
+   int power = returnindes(A-1, (B+1)/2);
+   if(B%2 != 0){
+    return power; 
+  } else{
+    return power==0?1:0;
+  }
+
 
 }
 
-int returnindes(string s, int i, int A, int B){
-    if(i == A){
-        return (int)(s[B] - '0');
-    }
 
-    string st = buildstring(s);
-    return returnindes(st, i+1, A, B);
-}
 
 int main(int argc, char const *argv[])
 {
     
-   
+    int ans = returnindes(4,5);
+    cout<<ans;
     return 0;
 }

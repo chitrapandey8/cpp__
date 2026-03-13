@@ -1,0 +1,1 @@
+{"name":"Local: ArrivalofGeneral","url":"d:\\DSA\\Codeforces\\ArrivalofGeneral.cpp","tests":[{"id":1773430367580,"input":"4\n33 44 11 22","output":"2"},{"id":1773430396331,"input":"7\n10 10 58 31 63 40 76","output":"10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\Codeforces\\ArrivalofGeneral.cpp","group":"local","local":true}
