@@ -1,0 +1,1 @@
+{"name":"Local: Anton","url":"d:\\DSA\\Codeforces\\Anton.cpp","tests":[{"id":1773433245597,"input":"{a, b, c}","output":"3"},{"id":1773433253947,"input":"{b, a, b, a}","output":"2"},{"id":1773433309348,"input":"{}","output":"0"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\DSA\\Codeforces\\Anton.cpp","group":"local","local":true}
