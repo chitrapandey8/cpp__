@@ -21,6 +21,12 @@ int main() {
       num = num>>1;
         }
         }
+
+        for (int i = 0; i < freq.size(); i++)
+        {
+           cout<<freq[i];
+        }
+        
         
                 int p = 1;
                 int ans = 0;
