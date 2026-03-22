@@ -4,7 +4,7 @@ using namespace std;
 
 vector<int> brute(vector<int> arr){
 vector<int> num(arr.begin(), arr.end());
-sort(num.begin(), num.end());
+ sort(num.begin(), num.end());
  
 int n = arr.size();
 int i = 0;
@@ -46,38 +46,38 @@ bool outorder(int i, vector<int> arr){
 int main() {
     
        vector<int> arr{1,2,3,7,10,5,4,16,20};
-//     int n = arr.size();
-//     int largest  = INT_MIN;
-//     int smallest = INT_MAX;
-//     for (int i = 0; i < n; i++)
-//     {
-//      if(outorder(i,arr)){
-//         largest = max(largest,arr[i]);
-//         smallest = min(smallest,arr[i]);
-//      }
-//     }
-//     cout<<smallest<<" "<<largest<<endl;
+    int n = arr.size();
+    int largest  = INT_MIN;
+    int smallest = INT_MAX;
+    for (int i = 0; i < n; i++)
+    {
+     if(outorder(i,arr)){
+        largest = max(largest,arr[i]);
+        smallest = min(smallest,arr[i]);
+     }
+    }
+   //  cout<<smallest<<" "<<largest<<endl;
 
-//    int left = 0;
-//    int right = n-1;
-//    while (arr[left] <= smallest)
-//    {
-//     left++;
-//    }
+   int left = 0;
+   int right = n-1;
+   while (arr[left] <= smallest)
+   {
+    left++;
+   }
 
-//    while (arr[right] >= largest)
-//    {
-//    right--;
-//    }
+   while (arr[right] >= largest)
+   {
+   right--;
+   }
    
        
-//     cout<<left<<" "<<right<<endl;
-//     cout<<right-left+1<<endl;
+    cout<<left<<" "<<right<<endl;
+    cout<<right-left+1<<endl;
     
-     vector<int> hello = brute(arr);
-     for(int x: hello){
-        cout<<x<<" "<<endl;
-     } 
+   //   vector<int> hello = brute(arr);
+   //   for(int x: hello){
+   //      cout<<x<<" "<<endl;
+   //   } 
 
 
     return 0;

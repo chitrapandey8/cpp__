@@ -80,10 +80,30 @@ bool optimal(vector<int> arr){
 
 }
 
+bool optimalll(vector<int> ans){
+    int n = ans.size();
+    unordered_set<int> hs;
+
+    int sum = 0;
+    for(int x: ans){
+        sum += x;
+        
+        if(hs.count(sum)){
+            return true;
+        }
+
+        hs.insert(sum);
+
+
+    }
+}
+
+
+
 
 int main() {
     vector<int> arr{1,-1};
-    if(optimal(arr)){
+    if(optimalll(arr)){
         cout<<"YES"<<endl;
     }else{
         cout<<"NO";
