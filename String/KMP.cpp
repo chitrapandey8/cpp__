@@ -2,25 +2,26 @@
 using namespace std;
 
 int main() {
-    string s = "ABCABDABCABCABD";
+    string s = "ABCDEABCD";
     int n = s.size();
-    vector<int> lps(n,0);
-    int pre = 0;
-    int suf = 1;
-    while(suf < n){
-        if(s[pre] == s[suf]){
-           lps[suf] =  pre+1;
-           pre++; suf++;
+    vector<int> arr(n,0);
+    int i = 0;
+    int j = 1;
+    while(j < n){
+        if(s[i] == s[j]){
+            arr[j] = i+1;
+            i++; j++;
         }else{
-            if(pre == 0){
-                lps[suf] = 0;
-                suf++;
+            if(i == 0){
+                arr[j] = 0;
+                j++;
             }else{
-                pre = lps[pre-1];
-
+                i = arr[i-1];
             }
         }
+
+        
     }
-    cout<<lps[n-1]<<endl;
+    cout<<arr[n-1]<<endl;
     return 0;
 }
