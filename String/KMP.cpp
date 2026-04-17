@@ -9,7 +9,7 @@ int main() {
     int j = 1;
     while(j < n){
         if(s[i] == s[j]){
-            arr[j] = i+1;
+            arr[j] = i+1; 
             i++; j++;
         }else{
             if(i == 0){
