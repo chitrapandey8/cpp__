@@ -14,7 +14,7 @@ int main() {
    }else{
     if(i == 0){
         arr[j] = 0;
-        j++;
+        j++;   
     }else{
         i = arr[i-1];
     }}}
