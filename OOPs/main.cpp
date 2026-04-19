@@ -7,6 +7,7 @@ class Student{
     int age;    //ye memoery mai char ek ek block lega 4 byte hi lega or segment ban leta hai or segmet mai hi read karta hai,
      int grade = 2;
     
+    
    ////setter
    public:
    void setname(string n){
@@ -28,6 +29,7 @@ class Student{
 
 int main(){
     Student s;
+    
     s.setname("hello");
     s.getname();
     s.getgrade(123);
