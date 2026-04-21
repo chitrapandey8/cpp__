@@ -1,13 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Customer{
+//Abstraction -- IT displays only essential information && and hiding the unneccsary details. mujhe nhi janna ki kaam kese klarr ahia kya ye mujhe result dera hai
+
+class Customerrr{
     string name;
     int balance;
     int age;
     int amount;
-
-    Customer(string name, int balance, int age){
+    
+    public:
+    Customerrr(string name, int balance, int age){
         this->name = name;
         this->balance = balance;
         this->age = age;
@@ -30,12 +33,19 @@ class Customer{
     }
 
     void display(){
-        
+        cout<<name<<" "<<balance<<endl;
     }
    
 };
 
 
 int main() {
+    Customerrr c("chita", 100, 7);
+    c.display();
+    c.diposit(1000);
+    c.display();
+    c.withdraw(200);
+    c.display();
+    c.diposit(-1);
     return 0;
 }
