@@ -1,19 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-void even(int n){
-    if(n % 2   != 0){
-        n--;
+
+int Fabonacii(int n){
+    if(n == 1){
+        return 1;
     }
-    if(n == 2){
-        cout<<n<<endl;
-        return;
+    if(n == 0){
+        return 1;
     }
-    even(n-2);
-    cout<<n<<endl;
-    
+
+    return Fabonacii(n-1) + Fabonacii(n-2);
 }
 
 int main() {
-    even(11);
+    cout<<Fabonacii(5);
     return 0;
 }
