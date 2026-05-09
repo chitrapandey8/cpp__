@@ -15,26 +15,16 @@ void tellme(int no, vector<int> num){
     j--;
     no = no>>1;
     }
-
-     
-
     for(int x: ans){
         cout<<x<<" ";
     }
     cout<<endl;
-
-
-    int sum =  0;
-    for(int x : ans){
-   sum += x;
-    }
-    
-    cout<<"this is sum";
-    cout<<sum<<endl;
-
-
-
-    
+//     int sum =  0;
+//     for(int x : ans){
+//    sum += x;
+//     }
+//     cout<<"this is sum";
+//     cout<<sum<<endl;
 }
 
 int tellsum(int no, vector<int> numm){
@@ -70,11 +60,11 @@ int main() {
     for (int i = 0; i < (1<<n); i++)
     {
        tellme(i, arr);
-       totalsum  += tellsum(i,arr);
+    //    totalsum  += tellsum(i,arr);
 
     }
 
-    cout<<totalsum<<endl;
+    // cout<<totalsum<<endl;
     
     return 0;
 }
