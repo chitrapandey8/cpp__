@@ -10,8 +10,6 @@ bool Find(vector<int> arr, int n, int index, int target){
         return 0;
     }
   
-
-
     return Find(arr, n, index+1, target) || Find(arr, n, index+1, target - arr[index]);
 }
 
@@ -23,7 +21,6 @@ int main() {
     }else{
         cout<<"Not Present"<<endl;
     }
-    
     
     return 0;
 }
