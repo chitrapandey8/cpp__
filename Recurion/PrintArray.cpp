@@ -24,8 +24,36 @@ int SumofArray(vector<int> arr, int i){
 }
 
 
+void printarr(vector<int> arr, int index){
+    if(index  == arr.size()){
+        return ;
+    }
+    
+    cout<<arr[index]<<" ";
+    printarr(arr, index+1);
+    
+}
+
+int sumofarray(vector<int> arr, int index){
+if(index  == arr.size()){
+    return 0;
+}
+
+return arr[index] + sumofarray(arr, index+1);
+
+
+}
+
+int mininarray(vector<int> arr, int index){
+    if(index == arr.size()-1){
+        return arr[index];
+    }
+
+    return max(arr[index], mininarray(arr, index+1));
+}
+
 int main() {
-    vector<int> arr = {1,2,3,4,5};
-    cout<<SumofArray(arr, 0);
+    vector<int> arr = {1,2,3,4,0};
+    cout<<mininarray(arr, 0);
     return 0;
 }
