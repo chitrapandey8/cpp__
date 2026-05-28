@@ -121,10 +121,46 @@ while(suffix < n){
    return -1;
 
 }
+string SPS(string s){
+        string t  = s;
+        string st = s;
+        string anss = s;
+        s += '$';
+        reverse(t.begin(), t.end());
+        s += t;
+
+        ///create lps of the string s:
+        int n = s.size();
+        vector<int> lps(n,0);
+        int prefix = 0;
+        int suffix = 1;
+        while(suffix < n){
+            if(s[prefix] == s[suffix]){
+                lps[suffix] = prefix+1;
+                prefix++; suffix++;
+            }else{
+                if(prefix == 0){
+                lps[suffix] = 0;
+                suffix++;
+                }else{
+                    prefix = lps[prefix-1];
+                }
+            }
+        }
+        
+        int cut = lps[n-1];
+        string cutthestring = st.substr(cut, st.size());
+        reverse(cutthestring.begin(), cutthestring.end());
+        string ans = "";
+        ans += cutthestring;
+        ans += anss;
+        
+   return ans;
+}
+
 int main() {
-    string s = "abcdaabceaabceaabdop";
-    string t = "aabceaabdo";
-    int ans = KMPPatterMatching(s, t);
+    string s = "abcd";
+    string ans = SPS(s);
     cout<<ans<<endl;
     return 0;
 }

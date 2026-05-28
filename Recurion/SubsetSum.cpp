@@ -1,31 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Generate(vector<int> arr, int index, int n, vector<int> &ans, int sum){
-    if(index == n){
-        ans.push_back(sum);
-        return;
+
+void Generatesum(vector<int> arr, int index, int sum, vector<int> &ans, vector<vector<int>> &anssubset, vector<int> temp){
+
+    if(index == arr.size()){
+      ans.push_back(sum);
+      anssubset.push_back(temp);
+      return;
     }
-    
-    ///yas
+
+
+    /// add the element to the sum
     sum += arr[index];
-    Generate(arr, index+1, n, ans, sum);
+    temp.push_back(arr[index]);
+    Generatesum(arr, index+1, sum, ans,anssubset, temp);
 
-     sum -= arr[index];
-    //no
-    Generate(arr, index+1, n, ans, sum);
-
-
+    ///dont include to the
+    temp.pop_back();
+    sum -= arr[index];
+    Generatesum(arr, index+1, sum, ans, anssubset,  temp);
 }
+
+
+
+
 
 int main() {
     vector<int> arr = {3,4,5};
     vector<int> ans;
     int sum = 0;
-    Generate(arr, 0, 3, ans, sum);
-
-    for(int x : ans){
-        cout<<x<<endl;
+    vector<vector<int>> anss;
+    vector<int> temp;
+    Generatesum(arr, 0, sum, ans, anss, temp);
+     
+    for(vector<int> xx: anss){
+        for(int a:xx){
+            cout<<a<<" ";
+        }
+        cout<<endl;
     }
+
+
+    for(int x: ans){
+        cout<<x<<" ";
+    }
+
+
+    
+
     return 0;
 }
