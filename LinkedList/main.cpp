@@ -5,117 +5,212 @@ class Node{
     public:
     int data;
     Node* next;
-    
     public:
     Node(int data){
-    this->data = data;
-    this->next = nullptr;     
+     this->data = data;
+     this->next = nullptr;
     }
 };
 
-Node* LinkedList(int n){
-
-Node* newnode = new Node(1);
+Node* Create(int n){
+    Node* newnode = new Node(1);
 Node* head = newnode;
-Node* curr = newnode;
+Node* curr = head;
 
 for(int i = 2; i<=n; i++){
 curr->next = new Node(i);
 curr = curr->next;
 }
-return head;
-}
-
-void PrintLinkedList(Node* head){
-Node* curr = head;
-while(curr != nullptr){
-    cout<<curr->data<<"->";
-    curr = curr->next;
-}
-
-}
-
-Node* Insertatbegin(Node* head){
-Node* newnode = new Node(0);
-newnode->next = head;
-head = newnode;
 
 return head;
 }
 
-Node* Insertatend(Node* head){
-Node* newnode =  new Node(6);
+
+void PrintList(Node* head){
+    Node* curr = head;
+    while(curr != nullptr){
+        cout<<curr->data<<"->";
+        curr = curr->next;
+    }
+
+
+}
+
+Node* InsertAtStart(Node* head){
+    Node* newnode = new Node(0);
+    newnode->next = head;
+    head  = newnode;
+    return head;
+}
+
+Node* InsertAtEnd(Node* head){
+    if(head == nullptr){
+        Node* newnode = new Node(1);
+        head  =  newnode;
+    }else{
+        Node* curr =  head;
+        while(curr->next != nullptr){
+            curr = curr->next;
+        }
+        curr->next = new Node(11);
+    }
+    return head;
+}
+
+
+Node* InsertAtEndd(vector<int> arr){ //create and insert at end
+    Node* head = nullptr;
+    Node* tail = nullptr;
+    for(int i = 0; i <arr.size(); i++){
+        if(head == nullptr){
+            head = new Node(arr[i]);
+            tail = head;
+        }else{
+        //     Node* curr =  head;
+        // while(curr->next != nullptr){
+        //     curr = curr->next;
+        //}
+        // curr->next = new Node(arr[i]);
+
+        //u can also write this way
+        tail->next =  new Node(arr[i]);
+        tail =  tail->next;
+        }
+    }
+    return head;
+}
+
+Node* createByRecursion(vector<int> arr, int index, int size){  ///we returing the address
+    if(index == size){ //tc - O(n)
+        return nullptr;
+    }
+
+    Node* temp;
+    temp = new Node(arr[index]);
+    temp->next = createByRecursion(arr, index+1, size); //jo bhi adres createbyrecursuion laake dega voh hum temp.next mai daal denge
+    return temp;
+}
+
+Node* createbyrecuratstart(vector<int> arr, int index,int size, Node* prev){
+
+      if(index == arr.size()){
+        return prev;
+      }
+
+    Node* temp;
+    temp = new Node(arr[index]);
+    temp->next = prev;
+    return createbyrecuratstart(arr, index+1, size, temp);
+}
+
+Node* InsertArpos(int pos, int data, Node* head){
 Node* curr = head;
-while(curr->next != nullptr){
+for(int i = 1; i<pos; i++){
     curr = curr->next;
 }
+Node* newnode = new Node(data);
+newnode->next = curr->next;
 curr->next = newnode;
 return head;
 }
 
-Node* InsertAtPos(Node* head, int n){
-    //what if the pos can be reached.
-    //what if pos is 1.
-      
-    Node* curr = head;
-    Node* newnode = new Node(100);
-   
-    for(int i = 1; i<n-1; i++){
-         curr = curr->next;
+
+Node* DeleteANode(Node* head){  //firstNode
+if(head == nullptr){
+    return nullptr;
+}
+
+//first way------------------------------
+// Node* temp = head;
+// head = head->next;
+// temp->next = nullptr;
+
+//another way-----------------------------
+head = head->next;
+return head;
+
+}
+
+Node* Deletetheend(Node* head){
+    if(head->next == nullptr){
+      head = nullptr;
+      return nullptr;   
     }
-    
-    newnode->next = curr->next;
-    curr->next = newnode;
+
+    Node* curr = head;
+    while(curr->next->next != nullptr){
+      curr = curr->next;
+    }
+    curr->next = nullptr;
+    return head;
+
+}
+
+Node* Deletebydata(Node* head, int data){
+
+
+if(head == nullptr){
+    return nullptr;
+}
+
+if(head->data == data){
+    Node* temp = head;
+    head  =  head->next;
+    delete temp;
+    return head;
+}
+Node* curr = head;
+while(curr->next != nullptr &&  curr->next->data != data){
+    curr = curr->next;
+}
+
+Node* temp = curr->next;
+curr->next = temp->next;
+delete temp;
 
 return head;
 
 }
 
-Node* DeletebyValue(Node* head, int val){
-    Node* curr = head;
-    while(curr->next != nullptr){
-        if(curr->next->data == val){
-            curr->next = curr->next->next;
-        }curr = curr->next;}
+Node* DeleteBypos(Node* head, int pos){
+    //Delete first Node
+    if(pos == 1){
+        Node* temp  = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    
+     Node* curr =  head;
+    for(int i =1; i<pos-1 && curr != nullptr; i++){
+        curr=  curr->next;
+    }
+
+    Node* temp = curr->next;
+    curr->next = temp->next;
+    delete temp;
     return head;
 }
 
-Node* InsertAtGivenData(Node* head, int val){
-    Node* curr = head;
-    while(curr != nullptr){
-     if(curr->data == val){
-      Node* newnode = new Node(101); //jab data mile tab hi new node create ho.   
-      newnode->next = curr->next;
-      curr->next = newnode;
-     }
-     curr  = curr->next;
-    }
- return head;   
+Node* DeletebyRecursion(Node* curr, int x){
+    
+if(x == 1){
+    Node* temp = curr->next;
+    delete curr;
+    return temp;
 }
 
-Node* Reverse(Node* head){
-    Node* prev = nullptr;
-    Node* curr = head;
-    Node* next = nullptr;
+curr->next = DeletebyRecursion(curr->next, x-1);
+return curr;
 
-    while(curr != nullptr){
-        next = curr->next;
-        curr->next = prev;
-
-        prev = curr;
-        curr = next;
-
-        head = prev;
-    }
-
-    return head;
 }
+
+
 
 int main() {
-    
-    Node* LL = LinkedList(5);
-    Node* LL2 = Reverse(LL);
-    PrintLinkedList(LL2);
-
+    Node* List = Create(5);
+    Node* poss = DeletebyRecursion(List, 3);
+    PrintList(poss);
     return 0;
 }
