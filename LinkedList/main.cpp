@@ -206,11 +206,182 @@ return curr;
 
 }
 
+Node* Reverse(Node* head){
+    vector<int> arr;
+    Node* curr = head;
+    while(curr != nullptr){
+      arr.push_back(curr->data);
+      curr = curr->next;
+    }
 
+    Node* temp =  head;
+    for(int i = arr.size()-1; i>=0; i--){
+        temp->data = arr[i];
+        temp = temp->next;
+    }
+    return head;
+    
+}
+
+Node* Reverseee(Node* head){
+    Node* prev = nullptr;
+    Node* next = nullptr;
+    Node* curr = head;
+  
+    while(curr != nullptr){
+    next = curr->next;
+    curr->next = prev;
+
+    prev = curr;
+    curr = next;
+    
+    
+    }
+    head = prev;
+    return head;
+}
+Node* ReversebyRecursion(Node* curr, Node* prev){
+ if(curr == nullptr) {
+    return prev; //new head of revser linked list;
+ }
+
+ Node* fut = curr->next;
+ curr->next = prev;
+ return ReversebyRecursion(fut, curr);
+
+
+}
+
+Node* RemovebyNth(Node *head, int x){
+////count total nodes
+int cnt = 0;
+Node* temp = head;
+while(temp != nullptr){
+    cnt++;
+    temp = temp->next;
+}
+
+cnt -= x;
+if(cnt == 0){ //agar frist wala delete karna ho
+temp = head;
+head = head->next;
+delete temp;
+return head;
+
+}
+Node* curr = head;
+Node* prev = nullptr;
+while(cnt--){
+prev = curr;
+curr = curr->next;
+}
+
+prev->next = curr->next;
+delete curr;
+
+return head;
+}
+
+int MiddleofLL(Node* head){
+  Node* slow = head;
+  Node* fast = head;
+  while(fast != nullptr && fast->next != nullptr){ //ya toh last node pe rok do ya phir null pe rok do
+    slow = slow->next;
+    fast = fast->next->next;
+  }
+  return slow->data;
+}
+
+Node* DeleteNthNode(Node* head, int x){
+return nullptr;
+}
+
+Node* RotateNode(Node* head, int x){
+    if(head == nullptr || head->next == nullptr){
+   return head;
+    }
+
+Node* curr = head;
+//count total nodes
+int cnt = 0;
+while(curr){
+ cnt++;
+ curr = curr->next;
+}
+cnt -= x;
+
+x = x%cnt;  // agar k bohot bada hai 
+if(x == 0){ //agar x == 0 hai toh roatae hi nhi karna 
+    return head;
+}
+Node* temp = head;
+Node* prev = nullptr;
+while (cnt--)
+{
+    prev = temp;
+    temp = temp->next;
+}
+
+prev->next = nullptr;
+Node* tt = temp;
+while(tt->next != nullptr){
+    tt = tt->next;
+}
+tt->next = head;
+head = temp;
+return head;
+
+}
+
+bool CheckPalinfrom(Node* head){
+    ListNode* temp = head;
+    int count = 0;
+    while(temp){
+        count++;
+        temp = temp->next;
+    }
+
+    count = count/2;
+    ListNode* curr = head;
+    ListNode* prev = nullptr;
+    
+    while(count--){
+        prev = curr;
+        curr  =curr->next;
+    }
+    prev->next = nullptr;
+    prev = nullptr;
+
+    ListNode* next = nullptr;
+    while(curr != nullptr){
+    next = curr->next;
+    curr->next = prev;
+
+    prev = curr;
+    curr = next;
+    }
+
+    ListNode* one  = head;
+    ListNode* two = prev;
+    while(one){
+        if(one->data != two->data){
+            return 0;
+        }
+
+        one = one->next;
+        two  = two->next;
+    }
+    return 1;
+}
 
 int main() {
-    Node* List = Create(5);
-    Node* poss = DeletebyRecursion(List, 3);
-    PrintList(poss);
+    Node* List = Create(10);
+    vector<int> arr = {1,2,3,3,2};
+    Node* ll = createByRecursion(arr, 0, 6);
+    if(CheckPalinfrom(ll)){
+        cout<<"yas"<<endl;
+    }else{
+        cout<<"no"<<endl;
+    }
     return 0;
 }
