@@ -334,7 +334,7 @@ return head;
 }
 
 bool CheckPalinfrom(Node* head){
-    ListNode* temp = head;
+    Node* temp = head;
     int count = 0;
     while(temp){
         count++;
@@ -342,8 +342,8 @@ bool CheckPalinfrom(Node* head){
     }
 
     count = count/2;
-    ListNode* curr = head;
-    ListNode* prev = nullptr;
+    Node* curr = head;
+    Node* prev = nullptr;
     
     while(count--){
         prev = curr;
@@ -352,7 +352,7 @@ bool CheckPalinfrom(Node* head){
     prev->next = nullptr;
     prev = nullptr;
 
-    ListNode* next = nullptr;
+    Node* next = nullptr;
     while(curr != nullptr){
     next = curr->next;
     curr->next = prev;
@@ -361,8 +361,8 @@ bool CheckPalinfrom(Node* head){
     curr = next;
     }
 
-    ListNode* one  = head;
-    ListNode* two = prev;
+    Node* one  = head;
+    Node* two = prev;
     while(one){
         if(one->data != two->data){
             return 0;
@@ -374,14 +374,53 @@ bool CheckPalinfrom(Node* head){
     return 1;
 }
 
-int main() {
-    Node* List = Create(10);
-    vector<int> arr = {1,2,3,3,2};
-    Node* ll = createByRecursion(arr, 0, 6);
-    if(CheckPalinfrom(ll)){
-        cout<<"yas"<<endl;
+Node* soer123(Node* head){
+int count0 = 0;
+int count1= 0;
+int count2 = 0;
+
+Node* curr  = head;
+
+while(curr != nullptr){
+    if(curr->data == 0){
+        count0++;
+    }else if(curr->data == 1){count1++;
     }else{
-        cout<<"no"<<endl;
+        count2++;
     }
+    curr = curr->next;
+}
+
+curr = head;
+
+while(count0--){
+    curr->data = 0;
+    curr = curr->next;
+}
+
+while(count1--){
+    curr->data = 1;
+    curr = curr->next;
+}
+
+while(count2--){
+    curr->data = 2;
+    curr = curr->next;
+}
+
+
+return head;
+}
+
+////Inplace
+
+
+
+
+int main() {
+    vector<int> arr = {0,1,0,2,2,0,1};
+    Node* ll = createByRecursion(arr, 0, arr.size());
+    Node* ans = soer123(ll);
+    PrintList(ans);
     return 0;
 }
