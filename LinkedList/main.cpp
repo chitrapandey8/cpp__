@@ -412,15 +412,104 @@ while(count2--){
 return head;
 }
 
-////Inplace
+///////////////////////////Circular Linked List//////////////
+bool detectloop(Node* head){
+unordered_map<Node*,int> mp;
+
+Node* curr = head;
+while(curr != nullptr){
+    if(mp[curr] == 1){
+        return 1;
+    }
+
+    mp[curr] = 1;
+    curr = curr->next;
+}
+return 0;
+}
 
 
+int intono(Node* head){
+        Node* curr = head;
+        string s = "";
+        while(curr){
+          s += to_string(curr->data);
+          curr = curr->next;
+        }
+        int n = s.size();
+        int i = 0; long long pow = 1; int ans = 0;
+        while(i<n){
+         int  no = s[i] - '0';
+         ans = no * pow + ans;
+         pow = pow*2;
+         i++;
+        }
+        return ans;
+}
 
+Node* Add(Node* head, int k){
+Node* first = new Node(0);
+first->next = head;
+head = first;
+
+
+int x;
+Node  *second, *prev, *curr, *front; 
+while(first->next){
+   x = k;
+   second = first->next;
+   prev = first;
+   curr = first->next;
+
+   while(x &&curr){
+    front   =curr->next;
+    curr->next = prev;
+    prev = curr;
+    curr = front;
+    x--;
+   }
+   first->next  =prev;
+   second->next = curr;
+   first = second;
+}
+
+///deleet deummu node
+first = head;
+head = head->next;
+delete first;
+return head;
+
+}
+
+Node* Recursion(Node* head, int k){
+    if(head == nullptr || head->next == nullptr){
+        return head;
+    }
+    Node* curr = head;
+    Node* prev = nullptr;
+    Node* next = nullptr;
+    int count = 0;
+
+    while(curr && count<k){
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+        count++;
+}
+
+head->next = Recursion(curr, k);
+return prev;
+
+}
 
 int main() {
-    vector<int> arr = {0,1,0,2,2,0,1};
+    vector<int> arr = {2,3,4,6,8,7,5,9,11};
+    
     Node* ll = createByRecursion(arr, 0, arr.size());
-    Node* ans = soer123(ll);
+    Node* ans = Recursion(ll,3);
     PrintList(ans);
+    
+    
     return 0;
 }
