@@ -503,12 +503,78 @@ return prev;
 
 }
 
-int main() {
-    vector<int> arr = {2,3,4,6,8,7,5,9,11};
+
+
+Node* Evenodd(Node* head){
+    vector<int> Odd;
+    vector<int> Even;
+   
+    //find the length of nodes:
+    ListNode* curr = head;
+    int cnt = 0;
+    while(curr){
+        cnt++;
+        curr = curr->next;
+    }
+
+    ///agar length odd hui toh kua or agar even hui toh kya
+   
+    if(cnt%2 != 0){
+      ListNode* l1 = head;
+      Odd.push_back(head->val);
+      while(l1 && l1->next){
+        Odd.push_back(l1->next->next->val);
+        Even.push_back(l1->next->val);
+        l1 = l1->next->next;
+      }
+    }
+    else{
+        ListNode* l2 = head->next;
+        Odd.push_back(head->val);
+        Even.push_back(head->next->val);
+        while(l2 && l2->next){
+       Even.push_back(l2->next->next->val);
+       Odd.push_back(l2->next->val);
+       l2 = l2->next->next;
+        } 
+    }
+
+    //put odd first
+    ListNode* curr1 = head;
+    int n = Odd.size();
+    int i = 0;
+    while(i<n){
+       curr1->val = Odd[i];
+       curr1 = curr1->next;
+       i++;
+    }
     
+     ListNode* curr2 = curr1;
+     int j = 0;
+     while(j<Even.size()){
+        curr2->val = Even[j];
+        curr2  = curr2->next;
+        j++;
+
+     }
+
+    return head;
+   }
+
+   
+
+
+
+
+
+
+
+int main() {
+    vector<int> arr = {2,1,3,5,6,4,7};
     Node* ll = createByRecursion(arr, 0, arr.size());
-    Node* ans = Recursion(ll,3);
-    PrintList(ans);
+    Node* Even = Evenodd(ll);
+   
+    PrintList(Even);
     
     
     return 0;
