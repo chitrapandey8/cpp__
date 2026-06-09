@@ -4,8 +4,10 @@ using namespace std;
 class TwoSum{
    public:
    unordered_map<int, int> mp;
+   
 
    void add(int number){
+    mp[0] = 1;
      mp[number]++;
    }
    
@@ -39,7 +41,7 @@ int main() {
     t.add(2);
     t.add(3);
     
-    cout<<t.Find(6)<<endl;
+    cout<<t.Find(2)<<endl;
     t.Print();
     return 0;
 }

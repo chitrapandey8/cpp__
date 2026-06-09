@@ -510,7 +510,7 @@ Node* Evenodd(Node* head){
     vector<int> Even;
    
     //find the length of nodes:
-    ListNode* curr = head;
+    Node* curr = head;
     int cnt = 0;
     while(curr){
         cnt++;
@@ -520,39 +520,39 @@ Node* Evenodd(Node* head){
     ///agar length odd hui toh kua or agar even hui toh kya
    
     if(cnt%2 != 0){
-      ListNode* l1 = head;
-      Odd.push_back(head->val);
+      Node* l1 = head;
+      Odd.push_back(head->data);
       while(l1 && l1->next){
-        Odd.push_back(l1->next->next->val);
-        Even.push_back(l1->next->val);
+        Odd.push_back(l1->next->next->data);
+        Even.push_back(l1->next->data);
         l1 = l1->next->next;
       }
     }
     else{
-        ListNode* l2 = head->next;
-        Odd.push_back(head->val);
-        Even.push_back(head->next->val);
+        Node* l2 = head->next;
+        Odd.push_back(head->data);
+        Even.push_back(head->next->data);
         while(l2 && l2->next){
-       Even.push_back(l2->next->next->val);
-       Odd.push_back(l2->next->val);
+       Even.push_back(l2->next->next->data);
+       Odd.push_back(l2->next->data);
        l2 = l2->next->next;
         } 
     }
 
     //put odd first
-    ListNode* curr1 = head;
+    Node* curr1 = head;
     int n = Odd.size();
     int i = 0;
     while(i<n){
-       curr1->val = Odd[i];
+       curr1->data = Odd[i];
        curr1 = curr1->next;
        i++;
     }
     
-     ListNode* curr2 = curr1;
+     Node* curr2 = curr1;
      int j = 0;
      while(j<Even.size()){
-        curr2->val = Even[j];
+        curr2->data = Even[j];
         curr2  = curr2->next;
         j++;
 
