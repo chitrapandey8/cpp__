@@ -15,9 +15,9 @@ class Node{
 class NStack{
 ///create members first
   public:
-  int *arr;
-  Node **Top;
-  
+  int *arr; //Dyamic array of intergers
+  Node **Top; ///Dyani=mic array of Node Pointers
+
   int size;  //size of array
   int n;  //no of stacks
   stack<int> st; //stack for free memories
@@ -49,8 +49,9 @@ class NStack{
        Node* newnode = new Node(st.top());
        newnode->next = Top[m-1];
        Top[m-1] = newnode;
-       return 1;
        cout<<"Done"<<endl;
+       return 1;
+       
     }
    
      void DisplayArray(){
@@ -60,8 +61,17 @@ class NStack{
      }
 
      //Now Pop the element, also return it
-     int Pop(){
-        if(Top[])
+     int Pop(int m){
+        if(Top[m-1] == nullptr){
+            return 0;
+        }
+        
+         st.push(Top[m-1]->index); //ye index aab khali hora hai
+         int ele = arr[Top[m-1]->index];
+
+         Top[m-1] = Top[m-1]->next;
+
+         return ele;
      }
      
 
@@ -73,7 +83,7 @@ class NStack{
 int main() {
     NStack t(3,10);
     cout<<t.Push(2,1)<<endl;
-    t.DisplayArray();
+    cout<<t.Pop(1)<<endl;
 
     return 0;
 }
