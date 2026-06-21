@@ -116,12 +116,31 @@ int Total(Node* root){
     return root->data + Total(root->left) + Total(root->right);
 }
 
+void iterativePReorder(Node* root, vector<int> &ans){
 
+    
+stack<Node*> st; st.push(root);
+while(!st.empty()){
+    Node* temp= st.top();
+    st.pop();
+    ans.push_back(temp->data);
+
+    if(temp->right){
+        st.push(temp->right);
+    }
+    if(temp->left){
+        st.push(temp->left);
+    }
+}
+}
 
 int main() {
     Node* root = createbyrecursion();
-    int ans = Total(root);
-    cout<<ans<<endl;
+    vector<int> ans;
+    iterativePReorder(root, ans);
+    for(int x: ans){
+        cout<<x<<endl;
+    }
     return 0;
 }
 
