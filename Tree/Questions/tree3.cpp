@@ -143,15 +143,56 @@ void findLeftViewRecusilvey(Node* root, vector<int> &ans, int level){
 }
 
 /////////////////////Find Top View of Tree////////////////////////////////////////////////////
+void TopView(Node* root, vector<int> &ans){
+//mai kya karugi ki mai level by leval traversal karugi taki mai har level ka top view lelu, ismai mai ordered map ka bhi use karuhgi mai same y axis pe ane wale elemets ka sabse top wala elment ans mai push karuhgi ye mia map ki help se karugi for O(1) check map pe mai cordinate->or node ka data rahugi jo orders way mia rahega, or mai har level ke node ke cordinate ko check karugi agar voh map mai nhi hoga toh usse daal dungi or agr hua toh igniore
+
+//mai ek queue lungi jismai mai pair dalugi
+queue<pair<Node*, int>> q;
+map<int, int> mp; 
+
+//root ko dalo queue mai
+q.push({root, 0});
+
+while (!q.empty())
+{
+auto it = q.front();
+q.pop();
+
+Node* curr = it.first;
+int cordinate = it.second;
+
+//chrck the cordinate in map first;
+if(mp.find(cordinate) == mp.end()){
+    mp[cordinate] = curr->data;
+}
+
+///left child exist kare toh left ko dalo and like wise 
+if(curr->left){
+    q.push({curr->left, cordinate-1});
+}
+
+if(curr->right){
+    q.push({curr->right, cordinate+1});
+}
+
+}
+
+for(auto it : mp){
+    ans.push_back(it.second);
+}
+
+
+
+}
 
 
 int main() {
-    vector<int> arr = {3,9,20,-1,-1,15,7};
+    vector<int> arr = {10, 20, 30, 40, 60, 90, 100};
     Node* root = MTreeA(arr);
     vector<int> ans;
 
-    findLeftViewRecusilvey(root, ans,0);
-
+    
+    TopView(root,ans);
 
     for(int x:ans){
         cout<<x<<" ";
