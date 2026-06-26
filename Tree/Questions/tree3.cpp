@@ -179,6 +179,141 @@ if(curr->right){
 
 for(auto it : mp){
     ans.push_back(it.second);
+}}
+
+/////////////array se same cheez kese kare , hum ek array le sakte hia 2n+1 size ka, jismai hum intianlly -1 store kar salte hia
+void Topviewwitharray(Node* root,vector<int> &ans){
+int N = 1000; // max size an tree can be 
+vector<int> arr(2*N+1,-1);
+
+int min_cord = INT_MAX;
+int max_cord = INT_MIN;
+//make queue and insert root; 
+queue<pair<Node* , int>> q;
+q.push({root,0});
+
+////queue mai iterate karugi, or har node ka cordinate ki vlaue check kruhgi array mai agar voh -1 hohi toh array mai uss node ki value daal dungi
+while (!q.empty())
+{
+    ///node niklao, uska cordiante niklao
+    auto it = q.front();
+    q.pop();
+
+    Node* curr = it.first;
+    int cordinate = it.second;
+
+    //update min or max cordinate
+    min_cord = min(min_cord, cordinate);
+    max_cord = max(max_cord, cordinate);
+
+    int index = cordinate + N;
+
+    if(arr[index] == -1){
+        arr[index] = curr->data;
+    }
+
+     ///left child exist kare toh push karo , or right bhi wise versa
+     if(curr->left){
+        q.push({curr->left , cordinate-1});
+     }
+     if(curr->right){
+        q.push({curr->right , cordinate+1});
+     }
+}
+
+///insert ans 
+for(int x: arr){
+    if(x != -1){
+        ans.push_back(x);
+    }
+}
+
+
+}
+///////////////Botthom view//////////////////
+void Bottomviewmp(Node* root, vector<int> &ans){
+queue<pair<Node*, int>> q;
+map<int, int> mp; 
+
+//root ko dalo queue mai
+q.push({root, 0});
+
+while (!q.empty())
+{
+auto it = q.front();
+q.pop();
+
+Node* curr = it.first;
+int cordinate = it.second;
+
+//chrck the cordinate in map first;
+
+    mp[cordinate] = curr->data;
+
+///left child exist kare toh left ko dalo and like wise 
+if(curr->left){
+    q.push({curr->left, cordinate-1});
+}
+
+if(curr->right){
+    q.push({curr->right, cordinate+1});
+}
+
+}
+
+for(auto it : mp){
+    ans.push_back(it.second);
+}
+}
+
+
+/////////////////Bothhom view of Tree with array/////////////////////
+
+void BottomView(Node* root, vector<int> &ans){
+
+    int N = 1000; // max size an tree can be 
+vector<int> arr(2*N+1,-1);
+
+int min_cord = INT_MAX;
+int max_cord = INT_MIN;
+//make queue and insert root; 
+queue<pair<Node* , int>> q;
+q.push({root,0});
+
+////queue mai iterate karugi, or har node ka cordinate ki vlaue check kruhgi array mai agar voh -1 hohi toh array mai uss node ki value daal dungi
+while (!q.empty())
+{
+    ///node niklao, uska cordiante niklao
+    auto it = q.front();
+    q.pop();
+
+    Node* curr = it.first;
+    int cordinate = it.second;
+
+    //update min or max cordinate
+    min_cord = min(min_cord, cordinate);
+    max_cord = max(max_cord, cordinate);
+
+    int index = cordinate + N;
+
+    
+        arr[index] = curr->data;
+    
+
+     ///left child exist kare toh push karo , or right bhi wise versa
+     if(curr->left){
+        q.push({curr->left , cordinate-1});
+     }
+     if(curr->right){
+        q.push({curr->right , cordinate+1});
+     }
+}
+
+///insert ans 
+for(int x: arr){
+    if(x != -1){
+        ans.push_back(x);
+    }
 }
 
 
@@ -187,12 +322,12 @@ for(auto it : mp){
 
 
 int main() {
-    vector<int> arr = {10, 20, 30, 40, 60, 90, 100};
+    vector<int> arr = {20, 8, 22, 5, 3, 4, 25, -1, -1, 10, 14, -1, -1, 28, -1};
     Node* root = MTreeA(arr);
     vector<int> ans;
 
     
-    TopView(root,ans);
+    Bottomviewmp(root, ans);
 
     for(int x:ans){
         cout<<x<<" ";
