@@ -197,15 +197,44 @@ void ProfitMaximixation(vector<int> &arr, int time){
     
 }
 
+void KthSmallest(vector<int> &arr, int k ){ ///tc--(n +  klogn) --min hwap se , max heap se nlogk (which is more optimised), heap ka size isami k hai isliye nlogk but klogn  mai n size ki heap banri ahii
+    // priority_queue<int, vector<int>, greater<int>> p;
+    // for(int x: arr){
+    //     p.push(x);
+    // }
+    // while(k > 1){
+    //     p.pop();
+    //     k--;
+    // }
+    // cout<<p.top()<<endl;
+
+
+    ///by max heap
+    priority_queue<int> p;
+    for(int i = 0; i<k; i++){
+        p.push(arr[i]);
+    }
+
+    for(int i = k; i<arr.size(); i++){
+        if(arr[i]<p.top()){
+            p.pop();
+            p.push(arr[i]);
+        }
+    }
+    cout<<p.top()<<endl;
+}
+
+
 
 int main() {
     //  vector<int> arr  = {10,20,30,40,13,15,18,3,4};
     // vector<int> arr = {4, 7, 9, 10}; //maxchocclate
     // vector<int> arr = {2,7,4,1,8,1}; 
-    vector<int> arr = {6,4,2,3};
+    // vector<int> arr = {6,4,2,3}; profit maximization
+    vector<int> arr = {10,3,7,4,8,9,2,6};
     int n = arr.size();
     // BuildmaxHeap(arr,n);
     Print(arr,n);
-    ProfitMaximixation(arr, 5);
+    KthSmallest(arr, 4);
     return 0;
 }
