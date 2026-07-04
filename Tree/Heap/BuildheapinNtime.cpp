@@ -98,10 +98,20 @@ int DeleteinHeap(vector<int> &arr){
 
 
 ///Heap sort/////////-- heap sort mai hum last or first element ko swap kar deter hai phir 0 se leke n-1 bache elemeents pe hepify  lagate hai
+void HeapSort(vector<int> &arr, int n){
+
+    for(int i = n-1; i>=0; i--){
+        swap(arr[0], arr[i]);
+        Heapify(arr, i, 0);
+    }
+}
 
 
 
-int height(vector<int> arr){ //u have to count number of edgess
+
+int heightt(vector<int> arr){ 
+    
+    //u have to count number of edgess
 int n = arr.size(); 
 if(n ==  1){return 1;} ///time complexity would be logn
 int h = 0;
@@ -224,6 +234,50 @@ void KthSmallest(vector<int> &arr, int k ){ ///tc--(n +  klogn) --min hwap se , 
     cout<<p.top()<<endl;
 }
 
+void SumofElementskthandkth(vector<int> &arr,  int k1,  int k2){
+    ///put k1 elements into queue1 
+    ///put k2 elements intp queue2
+    ///array k2th elements queue2 rakhega or array ke k1th elements queue1 rahega agar  mujhe undono ke beech ke elements ka sum chahiye toh mai dono heaps ke eleements sum nikal ke differnece nikal sakti hu jo jo kth1 ke commom elementgs honge voh hatjayege or end mai mai k2th element ko bhi nikalugi
+    priority_queue<int > q1;
+    priority_queue<int> q2;
+
+    for(int  i = 0;i < k1; i++){
+        q1.push(arr[i]);
+    } 
+    for(int  i = 0;i < k2; i++){
+        q2.push(arr[i]);
+    } 
+
+    ///ab pure array mai iterate karke or queue ka size maintain karke mai kth smallest eleemts nikaligi
+    for(int  i = k1; i<arr.size(); i++){
+        if(arr[i] < q1.top()){
+           q1.pop();
+           q1.push(arr[i]);
+        }
+    }
+    for(int  i = k2; i<arr.size(); i++){
+        if(arr[i] < q2.top()){
+           q2.pop();
+           q2.push(arr[i]);
+        }
+    }
+
+    int sum1 = 0;
+    int sum2 = 0;
+    int last = q2.top();
+
+    while(!q1.empty()){
+        sum1 += q1.top();
+        q1.pop();   
+    }
+    while(!q2.empty()){
+        sum2 += q2.top();
+        q2.pop();
+    }
+
+    cout<<((sum2-sum1)-last)<<endl;
+
+}
 
 
 int main() {
@@ -231,10 +285,10 @@ int main() {
     // vector<int> arr = {4, 7, 9, 10}; //maxchocclate
     // vector<int> arr = {2,7,4,1,8,1}; 
     // vector<int> arr = {6,4,2,3}; profit maximization
-    vector<int> arr = {10,3,7,4,8,9,2,6};
+    vector<int> arr = {20,8,22,4,12,10,14};
     int n = arr.size();
-    // BuildmaxHeap(arr,n);
+    BuildmaxHeap(arr,n);
+    HeapSort(arr, n);
     Print(arr,n);
-    KthSmallest(arr, 4);
     return 0;
 }
