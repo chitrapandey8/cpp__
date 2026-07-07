@@ -5,6 +5,7 @@ int main() {
 vector<int> arr = {};
     unordered_map<int, int> hm;
     int k = 7;
+    hm[0] = 1;
 
     int sum = 0;
     int rem = 0;

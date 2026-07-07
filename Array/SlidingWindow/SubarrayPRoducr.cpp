@@ -17,6 +17,5 @@ int main() {
         }
       ans += (end-start)+1;
       end++;
-    }
     return 0;
 }
