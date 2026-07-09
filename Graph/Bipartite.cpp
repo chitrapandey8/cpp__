@@ -6,9 +6,6 @@ using namespace std;
 //if any color is not assigned , then assign colot to them oppositr to them,
 //else agar already color assighned hai toh uska neigbour color is same as present node, we will declare it as bipartite graph
 
-void Bipartite(){
-
-}
 
 int main() {
     int v;
