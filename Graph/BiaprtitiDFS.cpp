@@ -26,7 +26,7 @@ return 1;
 int main() {
     int v;
     vector<int> color(v, -1);
-    color[0] = 0;
+    
 
     for(int i = 0; i<v; i++){
         if(color[i] == -1){

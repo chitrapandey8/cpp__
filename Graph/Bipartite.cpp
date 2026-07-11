@@ -7,7 +7,39 @@ using namespace std;
 //else agar already color assighned hai toh uska neigbour color is same as present node, we will declare it as bipartite graph
 
 
+void Bipartite(int v, vector<vector<int>> &list, vector<int> &color){
+    queue<int> q;
+
+    for(int i =0; i<v; i++){
+        if(color[i] == -1){
+            color[i] = 0;
+            q.push(0);
+
+            while(!q.empty()){
+                int node = q.front();
+                q.pop();
+
+                for(int i = 0; i<list[node].size(); i++){
+                    if(color[list[node][i]] == -1){
+                        color[list[node][i]] = (color[node]+1)%2;
+                        q.push(list[node][i]);
+                    }else{
+                        if(color[list[node][i]] == color[node]){
+                            cout<<"NOT BIPARTATE GRAPH!!!"<<endl;
+                        }
+                    }
+                }
+            }
+                 
+        }
+    }
+
+    
+}
+
+
 int main() {
+
     int v;
     vector<int> color(v,-1);
     queue<int> q;
@@ -24,7 +56,7 @@ int main() {
 
 
         for(int j = 0; j<adj[node].size(); j++){
-         if(color[adj[node][j]] == -1){
+         if(color[adj[node][j]] == -1){ //aagr color nhi mila bai toh color dedo or queue ami insert kardo
             color[adj[node][j]]  = (color[node]+1)%2;
             q.push(adj[node][j]); //jsikao abhi color assign kiya usse queue mai dalo
          }else{
