@@ -9,7 +9,7 @@ bool DetedctCycle(int node, int parent, vector<vector<int>> &adj, vector<bool> &
             continue;
         }
         if(visited[adj[node][j]] == 1){ ///negibour already visited hai toh return 1;
-            return 1;
+            return 1;   
         }
         if(DetedctCycle(adj[node][j], node, adj, visited)){
             return 1; ///agar negibour visited nhi hai toh visite karo

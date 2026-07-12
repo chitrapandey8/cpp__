@@ -8,7 +8,7 @@ void listt(vector<vector<int>> &list, int vertex, int edges){
         cin>>u>>v;
 
         list[u].push_back(v);
-        list[v].push_back(u);
+        
     }
 }
 
@@ -27,29 +27,73 @@ void Topological(int node, vector<vector<int>> &adj, vector<bool> &visited, stac
 }
 
 
+void KahnAlgorithm(vector<vector<int>> &adj, vector<int> &Indegree, vector<int> &ans){
+///hum usko queue mai dalte hai jiski indegree 0 hoti hai uske mtlb ye hai i agar uski indgree -0 hai toh voh kispe pe depeent nhi hai mai usse pehele rak sakti hu bakiyo se 
+queue<int> q;
+for(int i = 0;i <Indegree.size(); i++){
+    if(Indegree[i] == 0){
+        q.push(i);
+    }
+}
+
+ while(!q.empty()){
+    int node = q.front();
+    q.pop();
+    ans.push_back(node);
+    for(int i = 0; i<adj[node].size(); i++){
+        Indegree[adj[node][i]]--;
+        if(Indegree[adj[node][i]] == 0){
+            q.push(adj[node][i]);
+        }
+    }
+ }
+
+}
 
 int main() {
-    vector<vector<int>> adj;
     int vertices, edges;
     cin>>vertices>>edges;
+    vector<vector<int>> adj(vertices);
     listt(adj, vertices, edges);
 
    
-    vector<bool> visited(vertices,0);
-    stack<int> s;
+    // vector<bool> visited(vertices,0);
+    // stack<int> s;
 
-    for(int i = 0; i<visited.size(); i++){
-        if(visited[i]){
-            Topological(i, adj, visited, s);
-        }
-    }
+    // for(int i = 0; i<visited.size(); i++){
+    //     if(visited[i] == 0){
+    //         Topological(i, adj, visited, s);
+    //     }
+    // }
 
     vector<int> ans;
-    while(!s.empty()){
-        ans.push_back(s.top());
-        s.pop();
-    }
+    // while(!s.empty()){
+    //     ans.push_back(s.top());
+    //     s.pop();
+    // }
 
-    Topological(0,adj, visited,s);
+    // Topological(0,adj, visited,s);
+
+
+
+ ///////////////kahn Algorithm//////////////
+ vector<int> Indegree(adj.size());
+ for(int i =0; i<adj.size(); i++){
+     for(int j = 0; j<adj[i].size(); j++){
+        Indegree[adj[i][j]]++;
+     }
+ }
+
+ for(int x: Indegree){
+    cout<<x<<" ";
+ }
+
+cout<<endl;
+
+ KahnAlgorithm(adj, Indegree, ans);
+
+    for(int x: ans){
+        cout<<x<<" ";
+    }
     return 0;
 }

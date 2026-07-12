@@ -23,17 +23,17 @@ void listt(vector<vector<int>> &list, int vertex, int edges){
 //    }
 // }
 
-void DFS(int node, vector<vector<int>> &list, vector<bool> &visited, vector<int> &ans){
-    visited[node] = 1;
-    ans.push_back(node);
+// void DFS(int node, vector<vector<int>> &list, vector<bool> &visited, vector<int> &ans){
+//     visited[node] = 1;
+//     ans.push_back(node);
 
-    for(int i = 0; i<list[node].size(); i++){
-        if(!visited[list[node][i]]){
-            DFS(list[node][i], list, visited, ans);
-        }
-    }
+//     for(int i = 0; i<list[node].size(); i++){
+//         if(!visited[list[node][i]]){
+//             DFS(list[node][i], list, visited, ans);
+//         }
+//     }
 
-}
+// }
 
 void DFSIterativebyStack(vector<vector<int>> &list, vector<int> &ans){
 
@@ -60,6 +60,16 @@ void DFSIterativebyStack(vector<vector<int>> &list, vector<int> &ans){
 
 }
 
+void DFS(int node,vector<vector<int>> &list, vector<bool> &visited, vector<int> &ans){
+visited[node] = 1;
+ans.push_back(node);
+
+for(int i = 0; i< list[node].size(); i++){
+    if(visited[list[node][i]] == 0){
+        DFS(list[node][i], list, visited, ans);
+    }
+}
+}
 
 
 int main() {
@@ -76,12 +86,12 @@ int main() {
         cout<<endl;
     }
 
-    // vector<bool> visited(vertex, 0);
-    // vector<int> ans;
-    // DFS(0, list, visited, ans);
-
+    vector<bool> visited(vertex, 0);
     vector<int> ans;
-    DFSIterativebyStack(list, ans);
+    DFS(0, list, visited, ans);
+
+    // vector<int> ans;
+    // DFSIterativebyStack(list, ans);
 
     for(int x: ans){
     cout<<x<<" ";

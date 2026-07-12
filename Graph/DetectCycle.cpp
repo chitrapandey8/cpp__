@@ -14,6 +14,7 @@ void listt(vector<vector<int>> &list, int vertex, int edges){
 
 bool BFS(vector<vector<int>> &list, vector<bool> &visited){
 queue<pair<int, int>> q;
+visited[0] = 1;
 q.push({0,-1});
 
 int node, parent;
@@ -28,7 +29,7 @@ while(!q.empty()){
         }
 
         //agr voh already visited hai toh mtlb kisi or node se visite ho chuka hai dubbhara agar visit horra hai toh, mtlb cycle hia
-        if(visited[list[node][i]] == 1){
+        if(visited[list[node][i]] == 1){ //if any node comes viivted what does it tell me it tells me that i ahve already vivited this node thorugh some other path, if i have already reached a node through some other part already, and to differrnt routes to the same room create a loop.
             return 1;
         }
 
