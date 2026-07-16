@@ -12,19 +12,19 @@ int main() {
         a = 1.0/a;
     }
 
-      double ans = 1.0;
     // for(int i = 0; i<b; i++){
-    //  ans *= a;
-    // }
-    // cout<<ans<<endl;
-
+        //  ans *= a;
+        // }
+        // cout<<ans<<endl;
+        
+        double ans = 1.0;
       while (b)
       {
         if(b%2 == 1){
             ans = ans*a;
             b--;
         }else{
-            ans = ans*ans;
+             a = a*a;
             b = b/2;
         }
       }
