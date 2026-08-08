@@ -28,14 +28,13 @@ using namespace std;
 
 
 
-// int mincost(vector<int> cost, int n){
-//     if(n <= 1){
-//         return 0;
-//     }
-//   vector<int> mincost;
-
-//     return  min(cost[n-1] + mincost(cost, n-1), cost[n-2] + mincost(cost, n-2));
-// }
+int mincost(vector<int> cost, int n){
+    if(n <= 1){
+        return 0;
+    }
+  
+    return  min(cost[n-1] + mincost(cost, n-1), cost[n-2] + mincost(cost, n-2));
+}
 
 // int mincost(vector<int> cost, int n, vector<int> &dp){
 //     if(n <= 1){
@@ -69,7 +68,7 @@ int main() {
     // dp[1] = 1;
     // for(int  i = 2;  i<dp.size(); i++){
     //      dp[i]  =   min(cost[i-1] + dp[i-1], cost[n-2] +  d[n-2]);
-    //  }\
+    //  }
     
     int arr[] = {1,2,3,2,5};
     int n = sizeof(arr)/sizeof(arr[0]);
