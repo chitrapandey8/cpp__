@@ -25,12 +25,12 @@ void Valid(){
         i++; j--;
 
        }
-       
-       
       
     }
     cout<<"True"<<endl;
 }
+
+
 
 int main() {
     Valid();
