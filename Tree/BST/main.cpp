@@ -399,14 +399,12 @@ void FindCommonn(TreeNode* root1, TreeNode* root2, vector<int> &ans){
 
 int main() {
     vector<int> arr = {5, 4, 6, 3, -1, -1, 7, -1, -1, -1, 8};
-    TreeNode* root = nullptr; int n1 = 7; int n2 = 8;
+    TreeNode* root = nullptr;
     for(int x: arr){
         root = Create(root, x);
     }
 
     
-    TreeNode* ans = root;
-    cout<<ans->data<<endl;
-     
+    inorder(root);
     return 0;
 }
